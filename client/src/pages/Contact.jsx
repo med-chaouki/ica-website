@@ -1,227 +1,190 @@
-import { Link } from "wouter";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Mail, Phone, MapPin } from "lucide-react";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { toast } from "sonner";
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Le nom est requis"),
+  company: z.string().min(2, "L'entreprise est requise"),
+  email: z.string().email("Email invalide"),
+  phone: z.string().min(10, "Numéro de téléphone invalide"),
+  sector: z.string().min(1, "Veuillez sélectionner un secteur"),
+  message: z.string().min(10, "Le message doit contenir au moins 10 caractères"),
+});
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: ""
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm({
+    resolver: zodResolver(contactSchema)
   });
 
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    setTimeout(() => setSubmitted(false), 5000);
+  const onSubmit = async (data) => {
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log(data);
+    toast.success("Message envoyé avec succès ! Nous vous recontacterons bientôt.");
+    reset();
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
+    <div className="pb-16">
+      {/* Header */}
+      <div className="bg-slate-900 text-white py-16 mb-12">
+        <div className="container px-4 text-center">
+          <h1 className="text-4xl font-bold mb-6">Contactez-nous</h1>
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+            Une question ? Un besoin spécifique ? Nos équipes sont à votre écoute.
+          </p>
+        </div>
+      </div>
 
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Nous Contacter</h1>
-            <p className="text-lg md:text-xl opacity-95">
-              Nous sommes à votre écoute pour répondre à vos questions et vos demandes.
-            </p>
-          </div>
-        </section>
+      <div className="container px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-        {/* Contact Info Section */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              {/* Email 1 */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
-                <Mail className="text-primary mx-auto mb-4" size={40} />
-                <h3 className="text-xl font-bold text-foreground mb-2">Email Audit</h3>
-                <a
-                  href="mailto:inspection.control.audit@gmail.com"
-                  className="text-primary hover:underline font-semibold"
-                >
-                  inspection.control.audit@gmail.com
-                </a>
-              </div>
+          {/* Contact Info */}
+          <div className="flex flex-col gap-8">
+            <div>
+              <h2 className="text-2xl font-bold mb-6 text-slate-900">Nos Coordonnées</h2>
+              <div className="flex flex-col gap-6">
 
-              {/* Email 2 */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
-                <Mail className="text-primary mx-auto mb-4" size={40} />
-                <h3 className="text-xl font-bold text-foreground mb-2">Email Contact</h3>
-                <a
-                  href="mailto:contact@inspection-control.ma"
-                  className="text-primary hover:underline font-semibold"
-                >
-                  contact@inspection-control.ma
-                </a>
-              </div>
+                <Card className="border-none shadow-md">
+                  <CardContent className="p-6 flex items-start gap-4">
+                    <div className="p-3 bg-primary/10 rounded-lg text-primary">
+                      <Phone size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Téléphone</h3>
+                      <div className="flex flex-col gap-1 text-slate-600">
+                        <a href="tel:+212520590459" className="hover:text-primary transition-colors">+212 520 590 459</a>
+                        <a href="tel:+212660102102" className="hover:text-primary transition-colors">+212 660 102 102</a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-              {/* Location */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg text-center">
-                <MapPin className="text-primary mx-auto mb-4" size={40} />
-                <h3 className="text-xl font-bold text-foreground mb-2">Localisation</h3>
-                <p className="text-foreground/80 font-semibold">Maroc</p>
+                <Card className="border-none shadow-md">
+                  <CardContent className="p-6 flex items-start gap-4">
+                    <div className="p-3 bg-primary/10 rounded-lg text-primary">
+                      <Mail size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Email</h3>
+                      <div className="flex flex-col gap-1 text-slate-600">
+                        <a href="mailto:inspection.control.audit@gmail.com" className="hover:text-primary transition-colors">inspection.control.audit@gmail.com</a>
+                        <a href="mailto:contact@inspection-control.ma" className="hover:text-primary transition-colors">contact@inspection-control.ma</a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-none shadow-md">
+                  <CardContent className="p-6 flex items-start gap-4">
+                    <div className="p-3 bg-primary/10 rounded-lg text-primary">
+                      <MapPin size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2">Adresse</h3>
+                      <p className="text-slate-600">
+                        Coopérative Echabab/Lotissement Nabila Makhlouf,<br />
+                        2ème étage, Appt 5, Deroua, Berrechid
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Contact Form Section */}
-        <section className="py-16 md:py-24 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
-                Formulaire de Contact
-              </h2>
-
-              {submitted && (
-                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                  <p className="text-green-800 font-semibold">
-                    ✓ Merci ! Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.
-                  </p>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-sm border border-border">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  {/* Name */}
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
-                      Nom Complet *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="Votre nom"
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-foreground mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="votre@email.com"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  {/* Phone */}
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-2">
-                      Téléphone
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="+212 6XX XXX XXX"
-                    />
-                  </div>
-
-                  {/* Subject */}
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-semibold text-foreground mb-2">
-                      Sujet *
-                    </label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    >
-                      <option value="">Sélectionner un sujet</option>
-                      <option value="devis">Demander un Devis</option>
-                      <option value="inspection">Demander une Inspection</option>
-                      <option value="question">Question Générale</option>
-                      <option value="autre">Autre</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Message */}
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-semibold text-foreground mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={6}
-                    className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                    placeholder="Décrivez votre demande..."
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className="w-full px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  Envoyer le Message
-                </button>
-
-                <p className="text-sm text-foreground/60 mt-4">
-                  * Champs obligatoires
-                </p>
-              </form>
+            {/* Map */}
+            <div className="h-[400px] rounded-2xl overflow-hidden shadow-lg border border-slate-200">
+              <iframe
+                width="100%"
+                height="100%"
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?q=33.382029,-7.535164&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                frameBorder="0"
+                scrolling="no"
+                marginHeight="0"
+                marginWidth="0"
+                title="ICA Location"
+              ></iframe>
             </div>
-          </div>
-        </section>
 
-        {/* Response Time Section */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-2xl font-bold text-foreground mb-4">Délai de Réponse</h2>
-            <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-              Nous nous engageons à répondre à toutes les demandes dans les 24 à 48 heures ouvrables.
-              Pour une demande urgente, n'hésitez pas à nous appeler directement.
-            </p>
           </div>
-        </section>
-      </main>
 
-      <Footer />
+          {/* Contact Form */}
+          <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+            <h2 className="text-2xl font-bold mb-6 text-slate-900">Envoyez-nous un message</h2>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Nom complet</Label>
+                  <Input id="name" {...register("name")} placeholder="Votre nom" />
+                  {errors.name && <span className="text-red-500 text-sm">{errors.name.message}</span>}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="company">Entreprise</Label>
+                  <Input id="company" {...register("company")} placeholder="Votre société" />
+                  {errors.company && <span className="text-red-500 text-sm">{errors.company.message}</span>}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" {...register("email")} placeholder="votre@email.com" />
+                  {errors.email && <span className="text-red-500 text-sm">{errors.email.message}</span>}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Téléphone</Label>
+                  <Input id="phone" {...register("phone")} placeholder="+212..." />
+                  {errors.phone && <span className="text-red-500 text-sm">{errors.phone.message}</span>}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="sector">Secteur d'activité</Label>
+                <select
+                  id="sector"
+                  {...register("sector")}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <option value="">Sélectionnez un secteur</option>
+                  <option value="industrie">Industrie</option>
+                  <option value="btp">BTP & Infrastructures</option>
+                  <option value="energie">Énergie</option>
+                  <option value="logistique">Logistique & Transport</option>
+                  <option value="erp">ERP / Collectivités</option>
+                  <option value="autre">Autre</option>
+                </select>
+                {errors.sector && <span className="text-red-500 text-sm">{errors.sector.message}</span>}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="message">Message</Label>
+                <Textarea id="message" {...register("message")} placeholder="Détaillez votre demande..." className="min-h-[150px]" />
+                {errors.message && <span className="text-red-500 text-sm">{errors.message.message}</span>}
+              </div>
+
+              <Button type="submit" className="w-full text-lg py-6" disabled={isSubmitting}>
+                {isSubmitting ? "Envoi en cours..." : (
+                  <span className="flex items-center gap-2">
+                    Envoyer le message <Send size={18} />
+                  </span>
+                )}
+              </Button>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 }

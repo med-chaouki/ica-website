@@ -1,252 +1,174 @@
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle2, Shield, Zap, Award, ArrowRight, Building2, Factory, Truck, HardHat } from "lucide-react";
 import { Link } from "wouter";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { ArrowRight, CheckCircle, Building2, Zap, Users, Shield } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
-
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-20 md:py-32">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Garantir la Conformité de vos Équipements Techniques
-              </h1>
-              <p className="text-lg md:text-xl mb-8 opacity-95">
-                ICA assure la vérification réglementaire de vos installations pour garantir sécurité, performance et fiabilité dans le bâtiment, l'industrie et les infrastructures publiques.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/services"
-                  className="px-8 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-2"
-                >
-                  Découvrir nos Services
-                  <ArrowRight size={20} />
-                </Link>
-                <Link
-                  href="/contact"
-                  className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors inline-flex items-center justify-center gap-2"
-                >
-                  Nous Contacter
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Key Values Section */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-              Nos Valeurs Clés
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Conformité */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <Shield className="text-primary" size={32} />
-                  <h3 className="text-xl font-bold text-foreground">Conformité Garantie</h3>
-                </div>
-                <p className="text-foreground/80">
-                  Selon normes en vigueur. Nos experts vérifient la conformité réglementaire de tous vos équipements.
-                </p>
-              </div>
-
-              {/* Sécurité */}
-              <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-8 rounded-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <Zap className="text-amber-600" size={32} />
-                  <h3 className="text-xl font-bold text-foreground">Sécurité Maximale</h3>
-                </div>
-                <p className="text-foreground/80">
-                  Prévention des risques. Nous identifions et anticipons les problèmes avant qu'ils ne surviennent.
-                </p>
-              </div>
-
-              {/* Expertise */}
-              <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-lg">
-                <div className="flex items-center gap-3 mb-4">
-                  <Users className="text-green-600" size={32} />
-                  <h3 className="text-xl font-bold text-foreground">Experts Qualifiés</h3>
-                </div>
-                <p className="text-foreground/80">
-                  Évaluations rigoureuses. Notre équipe d'experts effectue des contrôles précis et détaillés.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Sectors Section */}
-        <section className="py-16 md:py-24 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-              Notre Expertise
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Bâtiment */}
-              <div className="bg-white p-8 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-                <Building2 className="text-primary mb-4" size={40} />
-                <h3 className="text-2xl font-bold mb-3 text-foreground">Bâtiment</h3>
-                <p className="text-foreground/80">
-                  Contrôle des installations techniques dans les bâtiments professionnels et résidentiels.
-                </p>
-              </div>
-
-              {/* Industrie */}
-              <div className="bg-white p-8 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-                <Zap className="text-primary mb-4" size={40} />
-                <h3 className="text-2xl font-bold mb-3 text-foreground">Industrie</h3>
-                <p className="text-foreground/80">
-                  Vérification des équipements industriels et installations de production.
-                </p>
-              </div>
-
-              {/* Infrastructures */}
-              <div className="bg-white p-8 rounded-lg shadow-sm border border-border hover:shadow-md transition-shadow">
-                <Shield className="text-primary mb-4" size={40} />
-                <h3 className="text-2xl font-bold mb-3 text-foreground">Infrastructures</h3>
-                <p className="text-foreground/80">
-                  Inspection des infrastructures publiques et équipements collectifs.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Services Preview Section */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-              Nos Services de Contrôle
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              {/* Chauffage & Ventilation */}
-              <div className="border border-border rounded-lg p-8 hover:border-primary transition-colors">
-                <h3 className="text-xl font-bold mb-3 text-foreground">Chauffage & Ventilation</h3>
-                <p className="text-foreground/80 mb-4">
-                  Contrôle complet des installations de chauffage, ventilation et climatisation pour assurer performance énergétique et conformité aux normes de sécurité.
-                </p>
-                <ul className="space-y-2 text-sm text-foreground/70">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Vérification des chaudières et systèmes de combustion
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Contrôle des installations d'aération et assainissement
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Test de performance et mesures énergétiques
-                  </li>
-                </ul>
-              </div>
-
-              {/* Ascenseurs & Levage */}
-              <div className="border border-border rounded-lg p-8 hover:border-primary transition-colors">
-                <h3 className="text-xl font-bold mb-3 text-foreground">Ascenseurs & Levage</h3>
-                <p className="text-foreground/80 mb-4">
-                  Inspection réglementaire des ascenseurs, monte-charges et tous types d'appareils de levage pour garantir la sécurité des utilisateurs.
-                </p>
-                <ul className="space-y-2 text-sm text-foreground/70">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Ascenseurs, monte-charges, élévateurs
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Ponts élévateurs, treuils, palans
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Grues à tour et nacelles
-                  </li>
-                </ul>
-              </div>
-
-              {/* Installations Électriques */}
-              <div className="border border-border rounded-lg p-8 hover:border-primary transition-colors">
-                <h3 className="text-xl font-bold mb-3 text-foreground">Installations Électriques</h3>
-                <p className="text-foreground/80 mb-4">
-                  Contrôle des installations électriques basses et moyennes tensions conformément aux normes de sécurité électrique en vigueur.
-                </p>
-                <ul className="space-y-2 text-sm text-foreground/70">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Installations basses et moyennes tensions
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Protection contre la foudre
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Groupes électrogènes de sécurité
-                  </li>
-                </ul>
-              </div>
-
-              {/* Sécurité Incendie */}
-              <div className="border border-border rounded-lg p-8 hover:border-primary transition-colors">
-                <h3 className="text-xl font-bold mb-3 text-foreground">Sécurité Incendie</h3>
-                <p className="text-foreground/80 mb-4">
-                  Vérification complète des équipements et installations de protection contre l'incendie et les explosions.
-                </p>
-                <ul className="space-y-2 text-sm text-foreground/70">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Extincteurs, RIA, poteaux incendie
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Systèmes sprinklers et installations CO₂
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-primary" />
-                    Détection automatique incendie
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity"
-              >
-                Voir Tous les Services
-                <ArrowRight size={20} />
+    <div className="flex flex-col gap-16 pb-16">
+      {/* Hero Section */}
+      <section className="relative h-[600px] flex items-center justify-center bg-slate-900 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2000&auto=format&fit=crop"
+            alt="Industrial Inspection"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+        <div className="container relative z-10 px-4 text-center">
+          <div>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+              Engagés pour construire <span className="text-primary">le futur</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-200 mb-8 max-w-3xl mx-auto">
+              Votre partenaire de confiance pour la sécurité, la conformité et la performance de vos installations techniques.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="text-lg px-8 py-6 bg-primary hover:bg-primary/90">
+                  Demander un devis
+                </Button>
+              </Link>
+              <Link href="/services">
+                <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-transparent border-white text-white hover:bg-white hover:text-slate-900">
+                  Nos Services
+                </Button>
               </Link>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Besoin d'une Vérification Réglementaire ?
-            </h2>
-            <p className="text-lg mb-8 opacity-95 max-w-2xl mx-auto">
-              Nos experts sont prêts à réaliser des évaluations précises et rigoureuses de vos installations.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-white text-primary font-semibold rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              Demander une Inspection
-              <ArrowRight size={20} />
+      {/* Why Choose Us */}
+      <section className="container px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Pourquoi choisir ICA ?</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            Bureau de contrôle agréé par l'État, nous mettons notre expertise au service de votre sécurité.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { icon: Shield, title: "Expertise Agréée", desc: "Bureau agréé par l'État garantissant conformité et rigueur." },
+            { icon: Zap, title: "Intervention Rapide", desc: "Réactivité et disponibilité pour vos urgences et projets." },
+            { icon: Award, title: "Qualité Certifiée", desc: "Engagement total envers la qualité et la performance." },
+            { icon: CheckCircle2, title: "Solutions Adaptées", desc: "Approche personnalisée pour chaque secteur d'activité." },
+          ].map((item, index) => (
+            <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="pt-6 text-center">
+                <div className="mb-4 inline-flex p-3 rounded-full bg-primary/10 text-primary">
+                  <item.icon size={32} />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-slate-600">{item.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Services Overview */}
+      <section className="bg-slate-50 py-16">
+        <div className="container px-4">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Nos Domaines d'Intervention</h2>
+              <p className="text-lg text-slate-600">Une gamme complète de services pour votre conformité.</p>
+            </div>
+            <Link href="/services">
+              <Button variant="ghost" className="hidden md:flex items-center gap-2 text-primary">
+                Voir tous les services <ArrowRight size={16} />
+              </Button>
             </Link>
           </div>
-        </section>
-      </main>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Inspections Réglementaires",
+                desc: "Contrôle des appareils de levage, installations électriques, équipements sous pression...",
+                image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1000&auto=format&fit=crop"
+              },
+              {
+                title: "Contrôles Non Destructifs",
+                desc: "Tests et essais (VT, PT, MT, UT) pour garantir l'intégrité de vos matériaux.",
+                image: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=1000&auto=format&fit=crop"
+              },
+              {
+                title: "Formation & Assistance",
+                desc: "Accompagnement technique et formations professionnelles pour vos équipes.",
+                image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=1000&auto=format&fit=crop"
+              }
+            ].map((service, index) => (
+              <div key={index} className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all">
+                <div className="aspect-video w-full overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6 bg-white relative">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                  <p className="text-slate-600 mb-4">{service.desc}</p>
+                  <Link href="/services">
+                    <span className="text-sm font-semibold text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                      En savoir plus <ArrowRight size={14} />
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center md:hidden">
+            <Link href="/services">
+              <Button variant="outline" className="w-full">Voir tous les services</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      <Footer />
+      {/* Sectors */}
+      <section className="container px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Secteurs d'Activité</h2>
+          <p className="text-lg text-slate-600">Des solutions adaptées à chaque industrie.</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { icon: Factory, label: "Industrie" },
+            { icon: Truck, label: "Logistique" },
+            { icon: Building2, label: "BTP & Infra" },
+            { icon: Zap, label: "Énergie" },
+          ].map((sector, index) => (
+            <Link key={index} href="/sectors">
+              <div className="p-6 rounded-lg border border-slate-200 hover:border-primary/50 hover:bg-primary/5 transition-colors cursor-pointer text-center group">
+                <sector.icon className="mx-auto mb-3 text-slate-400 group-hover:text-primary transition-colors" size={32} />
+                <span className="font-semibold text-slate-700 group-hover:text-primary transition-colors">{sector.label}</span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="container px-4 mb-8">
+        <div className="bg-primary rounded-2xl p-8 md:p-12 text-center text-white relative overflow-hidden">
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Prêt à sécuriser vos installations ?</h2>
+            <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+              Contactez nos experts dès aujourd'hui pour un devis personnalisé ou une intervention rapide.
+            </p>
+            <Link href="/contact">
+              <Button size="lg" variant="secondary" className="text-lg px-8 py-6 text-primary font-bold hover:bg-white">
+                Contactez-nous
+              </Button>
+            </Link>
+          </div>
+          <div className="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+        </div>
+      </section>
     </div>
   );
 }

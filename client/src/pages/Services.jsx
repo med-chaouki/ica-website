@@ -1,223 +1,131 @@
-import { Link } from "wouter";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { CheckCircle, Flame, Zap, Building2, Shield, Wrench } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Check, Shield, Microscope, HardHat, GraduationCap, Zap, Flame, Scale, FileCheck } from "lucide-react";
 
 export default function Services() {
+  const categories = [
+    {
+      id: "inspections",
+      title: "Inspections & Contrôles Techniques",
+      icon: Shield,
+      description: "Vérification réglementaire pour garantir la conformité et la sécurité de vos équipements.",
+      items: [
+        "Appareils de levage et manutention (ponts, grues, chariots...)",
+        "Ascenseurs et monte-charges",
+        "Machines et équipements de travail",
+        "Installations électriques (Basse et Moyenne Tension)",
+        "Appareils à pression et à vapeur",
+        "Portails et portes automatiques",
+        "Moyens de lutte contre l'incendie (Extincteurs, RIA...)",
+        "Équipements de Protection Individuelle (EPI)",
+        "Locaux et bâtiments (Aération, Amiante, Foudre)"
+      ]
+    },
+    {
+      id: "cnd",
+      title: "Tests & Essais (CND)",
+      icon: Microscope,
+      description: "Contrôles Non Destructifs pour évaluer l'intégrité de vos matériaux et structures.",
+      items: [
+        "VT (Visual Testing)",
+        "PT (Penetrant Testing / Ressuage)",
+        "MT (Magnetic Testing / Magnétoscopie)",
+        "UT (Ultrasonic Testing / Ultrasons)",
+        "PMI (Positive Material Identification)",
+        "Mesure de dureté et adhérence",
+        "Procédures certifiées Niveau 3",
+        "QA/QC (Assurance et Contrôle Qualité)"
+      ]
+    },
+    {
+      id: "assistance",
+      title: "Accompagnement & Assistance",
+      icon: FileCheck,
+      description: "Expertise technique pour vous accompagner à chaque étape de vos projets.",
+      items: [
+        "Validation des plans et conformité réglementaire",
+        "Contrôle pendant le chantier",
+        "Contrôle à la réception des travaux",
+        "Vérifications périodiques en exploitation",
+        "Analyse des risques et non-conformités",
+        "Mesures correctives et préventives",
+        "Traçabilité et documentation technique"
+      ]
+    },
+    {
+      id: "formation",
+      title: "Formation Professionnelle",
+      icon: GraduationCap,
+      description: "Montée en compétence de vos équipes sur la sécurité et la réglementation.",
+      items: [
+        "Formations CACES et conduite en sécurité",
+        "Habilitations électriques",
+        "Travail en hauteur et port des EPI",
+        "Sécurité Incendie (Manipulation extincteurs, évacuation)",
+        "Sensibilisation aux risques professionnels",
+        "Bonnes pratiques de maintenance"
+      ]
+    }
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Header />
+    <div className="pb-16">
+      {/* Header */}
+      <div className="bg-slate-50 py-12 mb-12 border-b">
+        <div className="container px-4 text-center">
+          <h1 className="text-4xl font-bold mb-4 text-slate-900">Nos Services</h1>
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            Une expertise complète pour répondre à tous vos besoins en matière de contrôle, d'inspection et de formation.
+          </p>
+        </div>
+      </div>
 
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-16 md:py-24">
-          <div className="container mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Nos Services de Contrôle</h1>
-            <p className="text-lg md:text-xl opacity-95">
-              Vérifications complètes de vos équipements techniques selon les normes en vigueur.
-            </p>
-          </div>
-        </section>
+      {/* Categories */}
+      <div className="container px-4 flex flex-col gap-16">
+        {categories.map((category, index) => (
+          <div key={category.id} id={category.id} className={`flex flex-col md:flex-row gap-8 md:gap-16 items-start ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
 
-        {/* Services Grid */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 gap-12">
-              {/* Chauffage & Ventilation */}
-              <div className="border-l-4 border-primary pl-8">
-                <div className="flex items-start gap-4 mb-6">
-                  <Wrench className="text-primary flex-shrink-0 mt-1" size={32} />
-                  <div>
-                    <h2 className="text-3xl font-bold text-foreground mb-2">Chauffage & Ventilation</h2>
-                    <p className="text-foreground/80">Systèmes de Chauffage et de Ventilation</p>
-                  </div>
-                </div>
-                <p className="text-foreground/80 mb-6">
-                  Contrôle complet des installations de chauffage, ventilation et climatisation pour assurer performance énergétique et conformité aux normes de sécurité.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Vérification des chaudières et systèmes de combustion</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Contrôle des installations d'aération et assainissement</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Test de performance et mesures énergétiques</span>
-                  </li>
-                </ul>
+            {/* Description Side */}
+            <div className="flex-1">
+              <div className="inline-flex p-3 rounded-xl bg-primary/10 text-primary mb-6">
+                <category.icon size={40} />
               </div>
-
-              {/* Ascenseurs & Levage */}
-              <div className="border-l-4 border-primary pl-8">
-                <div className="flex items-start gap-4 mb-6">
-                  <Building2 className="text-primary flex-shrink-0 mt-1" size={32} />
-                  <div>
-                    <h2 className="text-3xl font-bold text-foreground mb-2">Ascenseurs & Levage</h2>
-                    <p className="text-foreground/80">Ascenseurs et Appareils de Levage</p>
-                  </div>
-                </div>
-                <p className="text-foreground/80 mb-6">
-                  Inspection réglementaire des ascenseurs, monte-charges et tous types d'appareils de levage pour garantir la sécurité des utilisateurs.
+              <h2 className="text-3xl font-bold mb-4 text-slate-900">{category.title}</h2>
+              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                {category.description}
+              </p>
+              <div className="bg-primary/5 rounded-2xl p-8 border border-primary/10">
+                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                  <Zap size={20} className="text-primary" />
+                  Pourquoi ce service est essentiel ?
+                </h3>
+                <p className="text-slate-700">
+                  Garantir la sécurité des personnes et des biens, assurer la conformité réglementaire pour éviter les sanctions, et optimiser la disponibilité de vos équipements.
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Ascenseurs, monte-charges, élévateurs de personnes</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Ponts élévateurs, treuils, palans</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Grues à tour et nacelles</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Installations Électriques */}
-              <div className="border-l-4 border-primary pl-8">
-                <div className="flex items-start gap-4 mb-6">
-                  <Zap className="text-primary flex-shrink-0 mt-1" size={32} />
-                  <div>
-                    <h2 className="text-3xl font-bold text-foreground mb-2">Installations Électriques</h2>
-                    <p className="text-foreground/80">Vérifications Électriques Réglementaires</p>
-                  </div>
-                </div>
-                <p className="text-foreground/80 mb-6">
-                  Contrôle des installations électriques basses et moyennes tensions conformément aux normes de sécurité électrique en vigueur.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Installations basses et moyennes tensions</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Protection contre la foudre</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Groupes électrogènes de sécurité</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Sécurité Incendie */}
-              <div className="border-l-4 border-primary pl-8">
-                <div className="flex items-start gap-4 mb-6">
-                  <Flame className="text-primary flex-shrink-0 mt-1" size={32} />
-                  <div>
-                    <h2 className="text-3xl font-bold text-foreground mb-2">Sécurité Incendie</h2>
-                    <p className="text-foreground/80">Moyens de Lutte Contre l'Incendie et les Explosions</p>
-                  </div>
-                </div>
-                <p className="text-foreground/80 mb-6">
-                  Vérification complète des équipements et installations de protection contre l'incendie et les explosions.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Extincteurs, RIA, poteaux incendie</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Systèmes sprinklers, installations CO₂</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Détection automatique incendie</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Portes coupe-feu, exutoires de fumées</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Équipements Sous Pression */}
-              <div className="border-l-4 border-primary pl-8">
-                <div className="flex items-start gap-4 mb-6">
-                  <Shield className="text-primary flex-shrink-0 mt-1" size={32} />
-                  <div>
-                    <h2 className="text-3xl font-bold text-foreground mb-2">Équipements Sous Pression</h2>
-                    <p className="text-foreground/80">Contrôle des Équipements Sous Pression</p>
-                  </div>
-                </div>
-                <p className="text-foreground/80 mb-6">
-                  Inspection spécialisée des équipements fonctionnant sous pression conformément aux réglementations de sécurité strictes.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Chaudières industrielles et domestiques</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Installations de combustion</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Tours aéroréfrigérantes</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Autres Équipements */}
-              <div className="border-l-4 border-primary pl-8">
-                <div className="flex items-start gap-4 mb-6">
-                  <Wrench className="text-primary flex-shrink-0 mt-1" size={32} />
-                  <div>
-                    <h2 className="text-3xl font-bold text-foreground mb-2">Autres Équipements Techniques</h2>
-                    <p className="text-foreground/80">Équipements Soumis à Contrôle Réglementaire</p>
-                  </div>
-                </div>
-                <p className="text-foreground/80 mb-6">
-                  Contrôle de divers équipements techniques soumis à vérification réglementaire.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Équipements de Protection Individuelle (EPI)</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Locaux et bâtiments professionnels</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
-                    <span className="text-foreground">Protection des travailleurs</span>
-                  </li>
-                </ul>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-gray-50">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-              Intéressé par l'un de nos services ?
-            </h2>
-            <p className="text-lg text-foreground/80 mb-8 max-w-2xl mx-auto">
-              Contactez-nous pour discuter de vos besoins spécifiques en matière de vérification réglementaire.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-opacity"
-            >
-              Demander un Devis
-            </Link>
-          </div>
-        </section>
-      </main>
+            {/* List Side */}
+            <div className="flex-1 w-full">
+              <Card className="h-full shadow-md border-slate-200">
+                <CardHeader className="bg-slate-50 border-b border-slate-100 pb-4">
+                  <CardTitle className="text-lg font-medium text-slate-700">Prestations incluses</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <ul className="grid grid-cols-1 gap-3">
+                    {category.items.map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-slate-600">
+                        <Check size={18} className="text-primary mt-1 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
 
-      <Footer />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

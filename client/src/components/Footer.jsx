@@ -8,7 +8,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* About */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Inspection Control Audit</h3>
+            <div className="flex items-center gap-2 mb-4">
+              <img src="/logo-ica.png" alt="ICA Logo" className="h-10 w-auto bg-white rounded-md p-1" />
+              <h3 className="font-bold text-lg">Inspection Control Audit</h3>
+            </div>
             <p className="text-sm opacity-90">
               Bureau de contrôle spécialisé dans la vérification réglementaire des équipements techniques.
             </p>
@@ -29,18 +32,23 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/verifications" className="hover:underline">
-                  Vérifications
+                <Link href="/approach" className="hover:underline">
+                  Notre Approche
                 </Link>
               </li>
               <li>
-                <Link href="/missions" className="hover:underline">
-                  Missions
+                <Link href="/sectors" className="hover:underline">
+                  Secteurs
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:underline">
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/quote" className="hover:underline font-semibold text-primary-foreground">
+                  Demander un Devis
                 </Link>
               </li>
             </ul>
@@ -51,20 +59,26 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4">Nous Contacter</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
-                <Mail size={16} />
-                <a href="mailto:inspection.control.audit@gmail.com" className="hover:underline">
-                  inspection.control.audit@gmail.com
-                </a>
+                <Phone size={16} />
+                <div className="flex flex-col">
+                  <a href="tel:+212520590459" className="hover:underline">+212 520 590 459</a>
+                  <a href="tel:+212660102102" className="hover:underline">+212 660 102 102</a>
+                </div>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={16} />
-                <a href="mailto:contact@inspection-control.ma" className="hover:underline">
-                  contact@inspection-control.ma
-                </a>
+                <div className="flex flex-col">
+                  <a href="mailto:inspection.control.audit@gmail.com" className="hover:underline">
+                    inspection.control.audit@gmail.com
+                  </a>
+                  <a href="mailto:contact@inspection-control.ma" className="hover:underline">
+                    contact@inspection-control.ma
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="mt-1" />
-                <span>Maroc</span>
+                <span>Coopérative Echabab/Lotissement Nabila Makhlouf, 2ème étage, Appt 5, Deroua, Berrechid</span>
               </li>
             </ul>
           </div>

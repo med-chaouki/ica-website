@@ -1,108 +1,64 @@
-# Inspection Control Audit (ICA) - Site Web Statique
+# ICA Website - Inspection Control Audit
 
-Site web professionnel pour **Inspection Control Audit**, un bureau de contrôle technique spécialisé dans la vérification réglementaire des équipements techniques.
+Site web moderne pour ICA (Inspection Control Audit), bureau de contrôle spécialisé.
 
-## 🚀 Démarrage Rapide
+## Structure du Projet
 
-### Prérequis
-- Node.js 18+ 
+Le projet est divisé en deux parties distinctes :
+
+- **`/client`** : Frontend (React, Vite, Tailwind CSS)
+- **`/server`** : Backend (Express, Node.js)
+
+## Prérequis
+
+- Node.js (v18+)
 - npm ou pnpm
 
-### Installation
+## Installation
 
-1. **Clonez ou décompressez le projet**
-   ```bash
-   cd ica-website
-   ```
+1.  **Client** :
+    ```bash
+    cd client
+    npm install
+    ```
 
-2. **Installez les dépendances**
-   ```bash
-   npm install
-   # ou
-   pnpm install
-   ```
+2.  **Server** :
+    ```bash
+    cd server
+    npm install
+    ```
 
-3. **Lancez le serveur de développement**
-   ```bash
-   npm run dev
-   # ou
-   pnpm dev
-   ```
+## Démarrage en Développement
 
-4. **Ouvrez votre navigateur**
-   - Local: `http://localhost:3000`
-   - Network: `http://169.254.0.21:3000`
+1.  **Lancer le Client** :
+    ```bash
+    cd client
+    npm run dev
+    ```
+    Le site sera accessible sur `http://localhost:5173`.
 
-## 📄 Pages du Site
+2.  **Lancer le Serveur** (Optionnel pour le moment, sert les fichiers statiques en prod) :
+    ```bash
+    cd server
+    npm run dev
+    ```
+    Le serveur sera accessible sur `http://localhost:3000`.
 
-- **Accueil** (`/`) - Présentation générale, valeurs clés, secteurs d'expertise
-- **Services** (`/services`) - 6 services détaillés de contrôle
-- **Vérifications** (`/verifications`) - 7 catégories d'équipements obligatoires
-- **Missions** (`/missions`) - Méthodologie et interventions
-- **Contact** (`/contact`) - Formulaire et informations de contact
+## Fonctionnalités Clés
 
-## 🎨 Design & Branding
+- **Design Moderne** : Interface utilisateur soignée avec Tailwind CSS et Shadcn/UI.
+- **Formulaire de Devis** : Processus de demande de devis en 5 étapes avec validation et persistance locale.
+- **Responsive** : Adapté à tous les écrans (Mobile, Tablette, Desktop).
+- **Architecture Propre** : Séparation claire entre frontend et backend.
 
-- **Couleurs** : Bleu primaire (ICA) + Blanc
-- **Logo** : `/client/public/logo-ica.png`
-- **Responsive** : Mobile-first, optimisé pour tous les appareils
-- **Framework** : React 19 + Tailwind CSS 4 + shadcn/ui
+## Déploiement
 
-## 📁 Structure du Projet
-
-```
-ica-website/
-├── client/
-│   ├── public/           # Assets statiques (logo, images)
-│   ├── src/
-│   │   ├── pages/        # Pages du site
-│   │   ├── components/   # Composants réutilisables
-│   │   ├── index.css     # Styles globaux
-│   │   └── App.tsx       # Routeur principal
-│   └── index.html        # HTML d'entrée
-├── package.json
-├── vite.config.ts
-└── tsconfig.json
-```
-
-## 🔧 Commandes Disponibles
+Pour générer la version de production du client :
 
 ```bash
-npm run dev      # Démarrer le serveur de développement
-npm run build    # Construire pour la production
-npm run preview  # Prévisualiser la build
-npm run lint     # Vérifier le code
+cd client
+npm run build
 ```
 
-## 📝 Contenu
-
-Tout le contenu du site est basé sur les informations fournies pour ICA :
-- Services de contrôle technique
-- Vérifications périodiques obligatoires
-- Méthodologie d'intervention
-- Informations de contact
-
-## 🌐 Déploiement
-
-Pour déployer le site en production :
-
-1. **Build**
-   ```bash
-   npm run build
-   ```
-
-2. **Déployez le dossier `dist/`** sur votre serveur web
-
-## 📧 Contact
-
-- Email Audit: inspection.control.audit@gmail.com
-- Email Contact: contact@inspection-control.ma
-- Localisation: Maroc
-
-## 📄 Licence
-
-© 2025 Inspection Control Audit. Tous droits réservés.
-
----
-
-**Créé avec ❤️ par Manus AI**
+Les fichiers générés seront dans le dossier `dist` (à la racine ou dans client/dist selon la config).
+Le serveur est configuré pour servir ces fichiers statiques en production.
