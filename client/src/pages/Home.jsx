@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Shield, Zap, Award, ArrowRight, Building2, Factory, Truck, HardHat } from "lucide-react";
 import { Link } from "wouter";
+import heroImage from "@/assets/hero-industrial-inspection-branded.png";
 
 export default function Home() {
   return (
@@ -10,8 +11,8 @@ export default function Home() {
       <section className="relative h-[600px] flex items-center justify-center bg-slate-900 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2000&auto=format&fit=crop"
-            alt="Industrial Inspection"
+            src={heroImage}
+            alt="Industrial Inspection - ICA Professional Inspector"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/60" />

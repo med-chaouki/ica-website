@@ -15,6 +15,7 @@ import QuoteRequest from "./pages/QuoteRequest";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function Router() {
   return (
@@ -34,6 +35,7 @@ function Router() {
         </Switch>
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

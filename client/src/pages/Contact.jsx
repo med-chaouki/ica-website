@@ -24,11 +24,30 @@ export default function Contact() {
   });
 
   const onSubmit = async (data) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log(data);
-    toast.success("Message envoyé avec succès ! Nous vous recontacterons bientôt.");
-    reset();
+    try {
+      const response = await fetch("http://localhost:3000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        toast.success("Message envoyé avec succès ! Nous vous recontacterons bientôt.");
+        reset();
+      } else {
+        const errorMessage = result.errors
+          ? result.errors.join(", ")
+          : result.message || "Une erreur est survenue";
+        toast.error(errorMessage);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Erreur de connexion. Veuillez vérifier votre connexion internet et réessayer.");
+    }
   };
 
   return (

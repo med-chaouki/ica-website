@@ -64,18 +64,32 @@ export default function MultiStepForm() {
     const onSubmit = async (data) => {
         setIsSubmitting(true);
 
-        // Mock API call
         try {
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            const response = await fetch("http://localhost:3000/api/quote", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
 
-            // Success simulation
-            const ref = "ICA-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
-            setReferenceNumber(ref);
-            setIsSuccess(true);
-            localStorage.removeItem("quoteFormData");
-            toast.success("Demande envoyée avec succès !");
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                const ref = result.reference || "ICA-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
+                setReferenceNumber(ref);
+                setIsSuccess(true);
+                localStorage.removeItem("quoteFormData");
+                toast.success("Demande envoyée avec succès !");
+            } else {
+                const errorMessage = result.errors
+                    ? result.errors.join(", ")
+                    : result.message || "Une erreur est survenue";
+                toast.error(errorMessage);
+            }
         } catch (error) {
-            toast.error("Une erreur est survenue. Veuillez réessayer.");
+            console.error("Error submitting quote:", error);
+            toast.error("Erreur de connexion. Veuillez réessayer.");
         } finally {
             setIsSubmitting(false);
         }
