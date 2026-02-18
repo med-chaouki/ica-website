@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "sonner";
+import { submitContactForm } from "@/services/api";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Le nom est requis"),
@@ -25,28 +26,15 @@ export default function Contact() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:3000/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        toast.success("Message envoyé avec succès ! Nous vous recontacterons bientôt.");
-        reset();
-      } else {
-        const errorMessage = result.errors
-          ? result.errors.join(", ")
-          : result.message || "Une erreur est survenue";
-        toast.error(errorMessage);
-      }
+      await submitContactForm(data);
+      toast.success("Message envoyé avec succès ! Nous vous recontacterons bientôt.");
+      reset();
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Erreur de connexion. Veuillez vérifier votre connexion internet et réessayer.");
+      const errorMessage = error.errors?.length
+        ? error.errors.join(", ")
+        : error.message || "Une erreur est survenue";
+      toast.error(errorMessage);
     }
   };
 

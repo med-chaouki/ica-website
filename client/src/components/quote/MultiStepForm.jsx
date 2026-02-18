@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { quoteSchema, defaultValues } from "./schema";
 import { toast } from "sonner";
+import { submitQuoteForm } from "@/services/api";
 
 // Steps components (placeholders for now)
 import Step1Company from "./Step1Company";
@@ -65,31 +66,22 @@ export default function MultiStepForm() {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch("http://localhost:3000/api/quote", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
+            const result = await submitQuoteForm(data);
 
-            const result = await response.json();
-
-            if (response.ok && result.success) {
+            if (result.success) {
+                // If API returns a reference, use it. Otherwise fallback (though API should always return one now)
                 const ref = result.reference || "ICA-" + new Date().getFullYear() + "-" + Math.floor(1000 + Math.random() * 9000);
                 setReferenceNumber(ref);
                 setIsSuccess(true);
                 localStorage.removeItem("quoteFormData");
                 toast.success("Demande envoyée avec succès !");
-            } else {
-                const errorMessage = result.errors
-                    ? result.errors.join(", ")
-                    : result.message || "Une erreur est survenue";
-                toast.error(errorMessage);
             }
         } catch (error) {
             console.error("Error submitting quote:", error);
-            toast.error("Erreur de connexion. Veuillez réessayer.");
+            const errorMessage = error.errors?.length
+                ? error.errors.join(", ")
+                : error.message || "Une erreur est survenue";
+            toast.error(errorMessage);
         } finally {
             setIsSubmitting(false);
         }

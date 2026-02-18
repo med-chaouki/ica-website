@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Shield, Zap, Award, ArrowRight, Building2, Factory, Truck, HardHat } from "lucide-react";
 import { Link } from "wouter";
 import heroImage from "@/assets/hero-industrial-inspection-branded.png";
+import Partners from "@/components/Partners";
 
 export default function Home() {
   return (
@@ -78,7 +79,7 @@ export default function Home() {
               <p className="text-lg text-slate-600">Une gamme complète de services pour votre conformité.</p>
             </div>
             <Link href="/services">
-              <Button variant="ghost" className="hidden md:flex items-center gap-2 text-primary">
+              <Button className="hidden md:flex items-center gap-2 text-primary bg-transparent hover:bg-transparent [&:hover]:text-primary/70 transition-colors">
                 Voir tous les services <ArrowRight size={16} />
               </Button>
             </Link>
@@ -123,11 +124,14 @@ export default function Home() {
           </div>
           <div className="mt-8 text-center md:hidden">
             <Link href="/services">
-              <Button variant="outline" className="w-full">Voir tous les services</Button>
+              <Button className="w-full bg-white text-primary border border-primary [&:hover]:bg-primary [&:hover]:text-white transition-colors">Voir tous les services</Button>
             </Link>
           </div>
         </div>
       </section>
+
+      {/* Partners Section */}
+      <Partners />
 
       {/* Sectors */}
       <section className="container px-4">

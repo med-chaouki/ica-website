@@ -3,12 +3,15 @@ import React from "react";
 const WhatsAppButton = () => {
     return (
         <a
-            href="https://wa.me/212638978320"
+            href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+            className="fixed bottom-6 right-6 z-[100] group flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
             aria-label="Contact us on WhatsApp"
         >
+            <span className="absolute right-16 bg-white text-black text-xs font-bold px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                WhatsApp
+            </span>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
