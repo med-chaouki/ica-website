@@ -3,6 +3,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, Shield, Zap, Award, ArrowRight, Building2, Factory, Truck, HardHat } from "lucide-react";
 import { Link } from "wouter";
 import heroImage from "@/assets/hero-industrial-inspection-branded.png";
+import serviceInspectImg from "@/assets/service_inspect.png";
+import serviceNdtImg from "@/assets/service_ndt.png";
+import serviceTrainingImg from "@/assets/service_training.png";
 import Partners from "@/components/Partners";
 
 export default function Home() {
@@ -87,19 +90,19 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Inspections Réglementaires",
+                title: "Contrôle Réglementaire",
                 desc: "Contrôle des appareils de levage, installations électriques, équipements sous pression...",
-                image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1000&auto=format&fit=crop"
+                image: serviceInspectImg
               },
               {
                 title: "Contrôles Non Destructifs",
                 desc: "Tests et essais (VT, PT, MT, UT) pour garantir l'intégrité de vos matériaux.",
-                image: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=1000&auto=format&fit=crop"
+                image: serviceNdtImg
               },
               {
                 title: "Formation & Assistance",
                 desc: "Accompagnement technique et formations professionnelles pour vos équipes.",
-                image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=1000&auto=format&fit=crop"
+                image: serviceTrainingImg
               }
             ].map((service, index) => (
               <div key={index} className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all">

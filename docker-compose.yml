@@ -1,0 +1,45 @@
+# ── ICA Website – Docker Compose ─────────────────────────────────────
+# Usage:
+#   Development  : docker compose up --build
+#   Production   : set VITE_API_URL to your domain first, then:
+#                  docker compose up --build -d
+#
+# Make sure server/.env exists (copy server/.env.example and fill values).
+# ─────────────────────────────────────────────────────────────────────
+
+services:
+  # ── Express API Server ────────────────────────────────────────────
+  server:
+    build:
+      context: ./server
+    container_name: ica-server
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./server/.env
+    environment:
+      NODE_ENV: production
+    networks:
+      - ica-net
+
+  # ── React / Vite Client (served by nginx) ─────────────────────────
+  client:
+    build:
+      context: ./client
+      args:
+        # Change this to your actual API URL (or set it in your shell env)
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:3000}
+        VITE_WHATSAPP_NUMBER: ${VITE_WHATSAPP_NUMBER:-}
+    container_name: ica-client
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - ica-net
+
+networks:
+  ica-net:
+    driver: bridge

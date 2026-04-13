@@ -9,7 +9,7 @@ export default function Footer() {
           {/* About */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img src="/logo-ica.png" alt="ICA Logo" className="h-10 w-auto bg-white rounded-md p-1" />
+              <img src="/logo-ica1.jpeg" alt="ICA Logo" className="h-10 w-auto bg-white rounded-md p-1" />
               <h3 className="font-bold text-lg">Inspection Control Audit</h3>
             </div>
             <p className="text-sm opacity-90">

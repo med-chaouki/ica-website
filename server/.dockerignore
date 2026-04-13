@@ -1,0 +1,34 @@
+node_modules
+npm-debug.log*
+yarn-error.log*
+
+# Environment secrets — never bake into image
+.env
+.env.*
+!.env.example
+
+# Build artefacts (not needed in server image)
+dist
+public
+
+# Test & coverage
+*.test.js
+*.spec.js
+__tests__/
+coverage/
+
+# Logs
+logs/
+*.log
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Documentation
+*.md
+SETUP.md
+TESTING.md
+TROUBLESHOOTING.md

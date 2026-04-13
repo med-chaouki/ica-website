@@ -17,7 +17,7 @@ export default function Services() {
         "Portails et portes automatiques",
         "Moyens de lutte contre l'incendie (Extincteurs, RIA...)",
         "Équipements de Protection Individuelle (EPI)",
-        "Locaux et bâtiments (Aération, Amiante, Foudre)"
+        "Locaux et bâtiments (Aération, Amiante, Foudre, facteurs d'ambiances : bruit, éclairement, qualité d'air…)"
       ]
     },
     {
@@ -25,6 +25,7 @@ export default function Services() {
       title: "Tests & Essais (CND)",
       icon: Microscope,
       description: "Contrôles Non Destructifs pour évaluer l'intégrité de vos matériaux et structures.",
+      essentialText: "Prestations d'inspection par méthodes non destructives destinées à détecter les défauts internes ou superficiels et à garantir la conformité réglementaire ainsi que la sécurité des installations et équipements industriels.",
       items: [
         "VT (Visual Testing)",
         "PT (Penetrant Testing / Ressuage)",
@@ -57,6 +58,7 @@ export default function Services() {
       icon: GraduationCap,
       description: "Montée en compétence de vos équipes sur la sécurité et la réglementation.",
       items: [
+        "Santé Sécurité au Travail",
         "Formations CACES et conduite en sécurité",
         "Habilitations électriques",
         "Travail en hauteur et port des EPI",
@@ -99,7 +101,7 @@ export default function Services() {
                   Pourquoi ce service est essentiel ?
                 </h3>
                 <p className="text-slate-700">
-                  Garantir la sécurité des personnes et des biens, assurer la conformité réglementaire pour éviter les sanctions, et optimiser la disponibilité de vos équipements.
+                  {category.essentialText || "Garantir la sécurité des personnes et des biens, assurer la conformité réglementaire pour éviter les sanctions, et optimiser la disponibilité de vos équipements."}
                 </p>
               </div>
             </div>
