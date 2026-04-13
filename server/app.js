@@ -1,13 +1,8 @@
 import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
 import cors from "cors";
 import { generalLimiter } from "./middleware/rateLimiter.js";
 import contactRouter from "./routes/contact.js";
 import quoteRouter from "./routes/quote.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -33,15 +28,6 @@ app.get("/api/health", (_req, res) => {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
-// ── Static Files (production) ────────────────────────────────────────
-if (process.env.NODE_ENV === "production") {
-    const staticPath = path.resolve(__dirname, "public");
-    app.use(express.static(staticPath));
 
-    // Client-side routing fallback
-    app.get("*", (_req, res) => {
-        res.sendFile(path.join(staticPath, "index.html"));
-    });
-}
 
 export default app;

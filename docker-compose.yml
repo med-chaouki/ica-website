@@ -14,12 +14,17 @@ services:
       context: ./server
     container_name: ica-server
     restart: unless-stopped
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     env_file:
       - ./server/.env
     environment:
       NODE_ENV: production
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - ica-net
 
@@ -29,7 +34,7 @@ services:
       context: ./client
       args:
         # Change this to your actual API URL (or set it in your shell env)
-        VITE_API_URL: ${VITE_API_URL:-http://localhost:3000}
+        VITE_API_URL: ${VITE_API_URL}
         VITE_WHATSAPP_NUMBER: ${VITE_WHATSAPP_NUMBER:-}
     container_name: ica-client
     restart: unless-stopped
@@ -37,6 +42,11 @@ services:
       - "80:80"
     depends_on:
       - server
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:80"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - ica-net
 
