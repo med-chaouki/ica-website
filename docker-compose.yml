@@ -14,8 +14,8 @@ services:
       context: ./server
     container_name: ica-server
     restart: unless-stopped
-    # ports:
-    #   - "3000:3000"
+    ports:
+      - "3000:3000"
     env_file:
       - ./server/.env
     environment:
